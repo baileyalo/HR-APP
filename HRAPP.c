@@ -40,8 +40,6 @@ int main()
 {
 	
 	system("COLOR B1");
-	
-	
 	int option=0,employeenumber=0;
 	
 	node_t *head=NULL;
@@ -58,26 +56,17 @@ int main()
 	printf("\n\t\t\t\t********************************************************\n");
 	
 	printf("\n\t\t\t\t Option:\t");
-	scanf("%d",&option);
-
-	
+	scanf("%d",&option);	
 	while(option!=5)
-	{
-		
+	{		
 	  if(option==1)
 	  {
 		 printf("\n Enter the employee number for the record to be viewed:\t");
 		 fflush(stdin);
 	     scanf("%d",&employeenumber);
-	  	search(head,employeenumber);
-
-	  	
-	       	
+	  	search(head,employeenumber);     	
 	    		  
-      }	
-	  
-	         
-
+      } 	         
      if(option==2)
      {
         head=create_staff(head);
@@ -117,9 +106,6 @@ int main()
   }
 	getche();
 }
-
-
-
 node_t* create_staff(node_t* head) 
 {
     //node_t * head = NULL;
@@ -131,9 +117,7 @@ node_t* create_staff(node_t* head)
 	int numberofrecords=0,principalLimit=0, secretaryLimit=0, teacherLimit=0, ancillaryLimit=0;
 	 int principaldecision=1, secretarydecision=1, teacherdecision=1, ancillarydecision=1;
 	
-	numberofrecords=read();
-	
-  
+	numberofrecords=read();  
    do 
   {
 	  
@@ -200,18 +184,14 @@ node_t* create_staff(node_t* head)
 	scanf("%d",&counter);
 	
   }
-  while(counter!=0);
-  
-  
-	write(numberofrecords);
+  while(counter!=0); 
+  	write(numberofrecords);
 	
 	return head;
 	printf( "   "  );
 }
-
 void write(int numberofrecords)
 {
-		
 	FILE*counting;
 	counting=fopen("recordnumber.txt","w");
 	fprintf(counting,"%d",numberofrecords);
@@ -327,12 +307,8 @@ void print_list(node_t * head)
         current = current->next;
     }
 }
-
-
-
 struct node *deleteSpecificItem(struct node* head ,int employeeNumber)
-{
- 
+{ 
     node_t *temp, *current_pointer, *prev_pointer, *p;
     
     int found=0,size=0;//Not found
@@ -353,8 +329,7 @@ struct node *deleteSpecificItem(struct node* head ,int employeeNumber)
              head=p->next;//head node is now next node.
              found=1;
              free(p);
-	    }
-	
+	    }	
 		p=head;
 		
 		while(found==0 && p!=NULL)//Search list for requested record.
@@ -382,8 +357,6 @@ struct node *deleteSpecificItem(struct node* head ,int employeeNumber)
 	
    return head;
 }
-
-
 struct node * updateNode(struct node* head)
 {
     node_t *temp, *current_pointer, *prev_pointer, *p;
@@ -394,9 +367,7 @@ struct node * updateNode(struct node* head)
     
 	float hoursworked=0;
     
-    int found=0;//Not found
-
-    
+    int found=0;//Not found    
     prev_pointer=NULL;//store the value of first node.
     
     printf("\nEmployee Number (1000 - 1999):\t");
@@ -449,8 +420,7 @@ struct node * updateNode(struct node* head)
 		p=head;//store the value of head node.
 		
 		if(p->employeeNumber==employeeNumber) //Check if head node has the value.
-        {
-        	
+        {        	
              //head=p->next;//head node is now next node.
           strcpy(p->firstName,firstName);
           
@@ -507,41 +477,26 @@ struct node * updateNode(struct node* head)
                
                
 			   found=1;
-	        }
-	        
-	       
-	         //overwritefile(p);
+	        }     
+	       	         //overwritefile(p);
 	        
 	        prev_pointer=p; // assign the address of p to the previous node variable.
 			p=p->next;//step to the next node.*/
-	    }
-	    
-	   
-		
+	    }   		
 	}
 	
-	size=read();
-	
-	 //overwritefile(p);
-	
+	size=read();	
+	 //overwritefile(p);	
    return head;
-	
 }
 
 void createfile(node_t* head)
-{
-	
-	node_t * current = head;
-	
-	FILE*file;
-	
-	file=fopen("staff.txt","a");
-	
+{	
+	node_t * current = head;	
+	FILE*file;	
+	file=fopen("staff.txt","a");	
 	fprintf(file,"\n%d %s %s %s %s %s %s %.2f %f %f %f",current->employeeNumber,current->firstName,current->lastName,current->dateofbirth,current->gender,current->taxpayerNumber,current->position, current->hoursworked,current->numberofWeeks,current->numberofyearsworked,current->salary);
-	
-	fclose(file);
-	
- 
+	fclose(file); 
 }
 
 node_t* readfromfile(node_t* head)
@@ -561,14 +516,10 @@ node_t* readfromfile(node_t* head)
 	
 	FILE*read;
 	//read from file
-	read=fopen("staff.txt","r");
-	
-	while(count<numberofrecords)
-    {
+	read=fopen("staff.txt","r");	
+	while(count<numberofrecords)    {
     	  
 	    fscanf(read,"\n%d %s %s %s %s %s %s %f %f %f %f",&employeeNumber,&firstName,&lastName,&dateofbirth,&gender,&taxpayerNumber,&position,&hoursworked,&numberofWeeks,&numberofyearsworked,&salary);
-
-           
         if(count==0)
         {   
             head=createList(employeeNumber,firstName,lastName,dateofbirth,gender,taxpayerNumber,position,hoursworked,numberofWeeks,numberofyearsworked,salary);   
@@ -694,10 +645,8 @@ float salaryCalculator(float hoursworked,float numberofWeeks, float numberofyear
 		  if(ancillarydecision==0)
 		  {
 		  	salary=noBonus*(numberofWeeks*hoursworked*ancillaryRate);
-		  }
-		
-	}
-	
+		  }		
+	}	
 	return salary;
 }
 
